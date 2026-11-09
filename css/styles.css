@@ -98,7 +98,7 @@ a { color: inherit; }
 /* ---------- montador ---------- */
 .stage-light.small { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 55% 60% at 50% 45%, rgb(217 184 133 / .2), transparent 70%); }
 .builder { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); padding: 96px clamp(16px, 4vw, 48px); max-width: 1400px; margin: 0 auto; border-top: 1px solid var(--line); }
-.builder-stage { --stage-h: calc(100dvh - 100px); position: sticky; top: 16px; align-self: start; height: var(--stage-h); display: grid; grid-template-rows: 1fr auto; border-radius: var(--radius); background: var(--bg-2); overflow: hidden; }
+.builder-stage { --stage-h: calc(100dvh - 100px); position: sticky; top: 16px; align-self: start; height: var(--stage-h); display: grid; grid-template-rows: minmax(0, 1fr) auto; border-radius: var(--radius); background: var(--bg-2); overflow: hidden; }
 .cake-photo { position: relative; align-self: center; justify-self: center; width: min(100%, var(--stage-h) - 44px); aspect-ratio: 1; scale: var(--size, .9); transform-origin: 50% 86%; transition: scale .6s var(--ease); }
 .cake-base { position: absolute; inset: 0; width: 100%; filter: drop-shadow(0 26px 26px rgb(20 11 6 / .55)); }
 .topper { position: absolute; translate: -50% -78%; filter: drop-shadow(0 4px 4px rgb(40 20 8 / .45)); }
@@ -167,23 +167,34 @@ input { position: absolute; opacity: 0; pointer-events: none; }
 }
 
 /* ---------- telemóvel ---------- */
+/* telemóvel deitado: palco e total fixos tapariam o ecrã inteiro */
+@media (max-height: 500px) {
+  .builder-stage, .total { position: relative; top: auto; bottom: auto; }
+}
 @media (max-width: 900px) {
-  .hero { margin: 8px; height: calc(100dvh - 16px); min-height: 700px; border-radius: 22px; }
+  /* no telemóvel o bloco de baixo corre em grelha: nada se sobrepõe, seja qual for a altura do ecrã */
+  .hero { margin: 8px; height: auto; min-height: 0; border-radius: 22px; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 18px 12px; padding: 0 var(--pad) 22px; }
+  .hero-title { top: 92px; }
+  .hero-cake, .glass, .hero-copy, .stats, .badge, .next { position: relative; inset: auto; translate: none; }
+  .hero-cake { grid-column: 1 / -1; justify-self: center; width: min(84vw, 460px); margin-top: 150px; }
+  .glass { grid-column: 1 / -1; justify-self: center; margin-top: -64px; }
+  .hero-copy { grid-column: 1 / -1; width: auto; }
+  .stats { grid-column: 1 / -1; margin: 0; justify-content: space-between; }
+  .badge { width: 84px; }
   .nav { grid-template-columns: 1fr auto; }
   .nav nav { display: none; }
-  .hero-title { top: 13%; }
   .kicker { padding-left: var(--pad); }
   .giant { font-size: 25vw; }
-  .hero-cake { width: 84vw; bottom: auto; top: 22%; }
-  .glass { top: auto; bottom: 37%; }
   .f1 { --x: 6%; --y: 50%; } .f2 { --x: 82%; --y: 48%; } .f3 { --x: 12%; --y: 58%; } .f4 { --x: 78%; --y: 58%; }
   .f5 { --x: 8%; --y: 30%; } .f6 { --x: 86%; --y: 30%; } .f7, .f8 { display: none; }
-  .hero-copy { top: auto; bottom: 23%; right: var(--pad); width: auto; }
-  .stats { top: auto; bottom: 12%; left: var(--pad); justify-content: space-between; }
-  .badge { width: 84px; bottom: 2.5%; }
-  .next { bottom: 4%; }
   .builder { grid-template-columns: 1fr; padding-top: 64px; gap: 20px; }
-  .builder-stage { top: 8px; --stage-h: 42dvh; height: var(--stage-h); z-index: 5; box-shadow: 0 16px 32px rgb(20 11 6 / .7); }
+  .builder-stage { top: 8px; --stage-h: clamp(200px, 30dvh, 300px); height: var(--stage-h); z-index: 5; box-shadow: 0 16px 32px rgb(20 11 6 / .7); }
+  /* a foto tem margens transparentes largas: amplia e deixa o palco cortar as sobras */
+  .cake-photo { width: calc(var(--stage-h) * 1.45); }
+  .spec { padding: 0 .75rem .6rem; font-size: .78rem; }
+  .total { gap: .5rem; padding: .75rem 1rem; }
+  .total strong { font-size: 1.4rem; }
+  .total .fine { font-size: .72rem; margin: 0; }
   .sizes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .foot { grid-template-columns: 1fr; text-align: left; }
 }
