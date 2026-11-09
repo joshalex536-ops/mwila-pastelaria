@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mwíla Pastelaria e Confeitaria</title>
+  <meta name="description" content="Bolos artesanais da Mwíla. Escolha da vitrine ou monte o seu bolo: formato, tamanho, massa, recheio e cobertura, com o preço na hora.">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=Rye&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main id="topo">
+    <!-- VITRINE: palavra gigante atrás, bolo recortado à frente, ingredientes a flutuar -->
+    <section id="vitrine" class="hero" aria-roledescription="carrossel" aria-label="Bolos da casa">
+      <header class="nav">
+        <a href="#topo" class="brand" aria-label="Mwíla, início"><img src="assets/logo.png" alt="" width="40" height="40"><span>Mwíla</span></a>
+        <nav aria-label="Principal">
+          <a href="#topo" aria-current="page">Início</a>
+          <a href="#monte">Personalizar</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+        <div class="nav-icons">
+          <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+          <a id="nav-wa" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="ph ph-whatsapp-logo"></i></a>
+          <a href="#monte" aria-label="Monte o seu bolo"><i class="ph ph-cake"></i></a>
+        </div>
+      </header>
+
+      <h1 class="hero-title"><span class="kicker">Feitos à mão</span><span class="giant" aria-hidden="true">BOLOS</span><span class="sr-only">Bolos</span></h1>
+
+      <div class="hero-cake" id="track"></div>
+
+      <div class="float" aria-hidden="true">
+        <img src="assets/recortes/morango.webp" alt="" class="f f1">
+        <img src="assets/recortes/chocolate.webp" alt="" class="f f2">
+        <img src="assets/recortes/noz.webp" alt="" class="f f3">
+        <img src="assets/recortes/tablete.webp" alt="" class="f f4">
+        <img src="assets/recortes/morango-meio.webp" alt="" class="f f5">
+        <img src="assets/recortes/raspa.webp" alt="" class="f f6">
+        <img src="assets/recortes/chocolate.webp" alt="" class="f f7 blur">
+        <img src="assets/recortes/noz.webp" alt="" class="f f8 blur">
+      </div>
+
+      <a id="cake-order" class="glass" target="_blank" rel="noopener">Encomendar</a>
+
+      <div class="hero-copy stage-info">
+        <p><strong id="cake-name">Trufado de chocolate</strong>. <span id="cake-desc"></span></p>
+        <p class="price-from">desde <strong id="cake-price"></strong> · <a id="cake-custom" href="#monte" class="link">Personalizar este</a></p>
+      </div>
+
+      <ul class="stats">
+        <li><b>6</b><span>Sabores da casa</span></li>
+        <li><b>48h</b><span>De antecedência</span></li>
+        <li><b>100%</b><span>Artesanal</span></li>
+      </ul>
+
+      <div class="badge" aria-hidden="true">
+        <svg viewBox="0 0 120 120"><defs><path id="ring" d="M60 60m-48 0a48 48 0 1 1 96 0a48 48 0 1 1-96 0"/></defs>
+          <text><textPath href="#ring">100% ARTESANAL • 100% ARTESANAL • 100% ARTESANAL •</textPath></text></svg>
+        <span>Pura<br>qualidade</span>
+      </div>
+
+      <button class="next" id="next" aria-label="Bolo seguinte"><svg viewBox="0 0 48 16" aria-hidden="true"><path d="M0 8h46M38 1l8 7-8 7"/></svg></button>
+    </section>
+
+    <!-- MONTADOR -->
+    <section id="monte" class="builder">
+      <div class="builder-stage">
+        <div class="stage-light small" aria-hidden="true"></div>
+        <div id="cake" class="cake-photo" role="img" aria-label="Pré-visualização do seu bolo"></div>
+        <p class="spec" id="spec" aria-live="polite"></p>
+      </div>
+
+      <form class="builder-panel" id="builder">
+        <h2 class="display">Monte o seu bolo</h2>
+        <p class="lead">Escolha cada detalhe e veja o bolo ganhar forma. O preço acompanha cada escolha.</p>
+
+        <fieldset><legend>Formato</legend><div class="chips" data-group="formato"></div></fieldset>
+        <fieldset><legend>Tamanho</legend><div class="sizes" data-group="tamanho"></div></fieldset>
+        <fieldset><legend>Massa</legend><div class="chips" data-group="massa"></div></fieldset>
+        <fieldset><legend>Recheio</legend><div class="chips" data-group="recheio"></div></fieldset>
+        <fieldset><legend>Cobertura</legend><div class="chips" data-group="cobertura"></div></fieldset>
+        <fieldset><legend>Decoração <span class="hint">pode escolher várias</span></legend><div class="chips" data-group="extras"></div></fieldset>
+
+        <div class="total" aria-live="polite">
+          <details>
+            <summary><span>Total estimado</span><strong id="total">0 Kz</strong></summary>
+            <ul id="lines"></ul>
+          </details>
+          <a id="order" class="btn btn-solid btn-wide" target="_blank" rel="noopener">Encomendar <i class="ph ph-whatsapp-logo"></i></a>
+          <p class="fine">Confirmamos o valor final e a data de entrega pelo WhatsApp. Pedidos com 48 h de antecedência.</p>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer id="contacto" class="foot">
+    <img src="assets/logo.png" alt="Mwíla Pastelaria e Confeitaria" width="120" height="120">
+    <div>
+      <p class="display foot-title">Feito à mão, por encomenda.</p>
+      <p>Encomendas de terça a sábado, das 9 h às 18 h.</p>
+    </div>
+    <ul class="foot-links">
+      <li><a id="foot-wa" target="_blank" rel="noopener"><i class="ph ph-whatsapp-logo"></i> WhatsApp</a></li>
+      <li><a href="https://instagram.com/" target="_blank" rel="noopener"><i class="ph ph-instagram-logo"></i> Instagram</a></li>
+    </ul>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
