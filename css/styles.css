@@ -171,7 +171,7 @@ input { position: absolute; opacity: 0; pointer-events: none; }
 @media (max-height: 500px) {
   .builder-stage, .total { position: relative; top: auto; bottom: auto; }
 }
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   /* no telemóvel o bloco de baixo corre em grelha: nada se sobrepõe, seja qual for a altura do ecrã */
   .hero { margin: 8px; height: auto; min-height: 0; border-radius: 22px; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 18px 12px; padding: 0 var(--pad) 22px; }
   .hero-title { top: 92px; }
